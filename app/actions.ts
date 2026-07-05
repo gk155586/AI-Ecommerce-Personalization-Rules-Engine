@@ -361,3 +361,20 @@ function generateMockAIResponse(state: ShopperState, events: string[]): Analysis
 
   return responses[state] || responses['Browser'];
 }
+
+/**
+ * Server Action to fetch analytics sessions and AB stats in a single request
+ */
+export async function getAnalyticsDataAction() {
+  try {
+    const sessions = await prisma.shopperSession.findMany({
+      orderBy: { createdAt: 'desc' },
+      take: 50
+    });
+    const abStats = await prisma.aBTestStats.findMany();
+    return { success: true, sessions, abStats };
+  } catch (err: any) {
+    console.error('Error fetching analytics:', err);
+    return { success: false, error: err.message || 'Failed to load database records', sessions: [], abStats: [] };
+  }
+}

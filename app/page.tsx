@@ -3,8 +3,6 @@
 import RulesEngineDemo from '@/components/RulesEngineDemo';
 import { Sparkles, Brain, Cpu, ShieldCheck } from 'lucide-react';
 
-export const dynamic = 'force-dynamic';
-
 export default function Home() {
   return (
     <main className="relative min-h-screen pb-20 selection:bg-indigo-500 selection:text-white">
