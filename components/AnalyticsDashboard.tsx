@@ -36,6 +36,7 @@ export default function AnalyticsDashboard() {
   const [abStats, setAbStats] = useState<ABStatData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
 
   const loadData = async () => {
     try {
@@ -54,6 +55,7 @@ export default function AnalyticsDashboard() {
   };
 
   useEffect(() => {
+    setMounted(true);
     loadData();
   }, []);
 
@@ -483,7 +485,7 @@ export default function AnalyticsDashboard() {
                     return (
                       <tr key={idx} className="hover:bg-[#1a1438]/20 transition-colors">
                         <td className="py-3.5 px-4 text-slate-400 font-mono">
-                          {sessionDate.toLocaleString()}
+                          {mounted ? sessionDate.toLocaleString() : ''}
                         </td>
                         <td className="py-3.5 px-4 font-bold text-slate-300">
                           {session.user}
