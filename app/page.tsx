@@ -1,7 +1,7 @@
-'use client';
-
 import RulesEngineDemo from '@/components/RulesEngineDemo';
 import { Sparkles, Brain, Cpu, ShieldCheck } from 'lucide-react';
+
+export const dynamic = 'force-dynamic';
 
 export default function Home() {
   return (
