@@ -1,0 +1,76 @@
+[
+  {
+    "user": "U001 - The Cart Abandoner",
+    "events": [
+      "Visited Homepage",
+      "Viewed Running Shoes",
+      "Viewed Sneakers",
+      "Compared Products",
+      "Added Running Shoes to Cart",
+      "Left Website"
+    ]
+  },
+  {
+    "user": "U002 - The Discount Seeker",
+    "events": [
+      "Visited Homepage",
+      "Viewed Leather Jacket",
+      "Coupon Applied",
+      "Checkout Started",
+      "Left Website"
+    ]
+  },
+  {
+    "user": "U003 - The Loyal Customer",
+    "events": [
+      "Visited Homepage",
+      "Logged In",
+      "Viewed Nike Air Max",
+      "Added Nike Air Max to Cart",
+      "Purchase Completed",
+      "Viewed Premium Socks",
+      "Added Premium Socks to Cart",
+      "Purchase Completed"
+    ]
+  },
+  {
+    "user": "U004 - The Price Comparer",
+    "events": [
+      "Visited Homepage",
+      "Viewed UltraBook 15",
+      "Viewed ZenBook Pro",
+      "Compared Products",
+      "Viewed MacBook Air",
+      "Compared Products",
+      "Left Website"
+    ]
+  },
+  {
+    "user": "U005 - The Window Shopper",
+    "events": [
+      "Visited Homepage",
+      "Left Website"
+    ]
+  },
+  {
+    "user": "U006 - The Casual Browser",
+    "events": [
+      "Visited Homepage",
+      "Viewed Cotton T-Shirt",
+      "Viewed Cargo Shorts",
+      "Viewed Sunglasses",
+      "Viewed Baseball Cap",
+      "Left Website"
+    ]
+  },
+  {
+    "user": "U007 - The Impulse Buyer",
+    "events": [
+      "Visited Homepage",
+      "Viewed High-End Headphones",
+      "Added High-End Headphones to Cart",
+      "Checkout Started",
+      "Purchase Completed"
+    ]
+  }
+]

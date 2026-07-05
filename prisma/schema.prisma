@@ -1,0 +1,42 @@
+datasource db {
+  provider = "sqlite"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  username  String   @unique
+  password  String   // In production, use hashed passwords
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+}
+
+model ShopperSession {
+  id                        String   @id @default(uuid())
+  user                      String   // Shopper User ID (e.g. SIM-404 or U001)
+  events                    String   // Event stream stored as JSON string
+  rulePrediction            String?  // Preliminary prediction from deterministic rules
+  ruleExplanations          String?  // Triggered rules details
+  aiClassification          String?  // Final AI classification
+  confidence                Int?     // Confidence score
+  evidence                  String?  // AI evidence list stored as JSON string
+  recommendedAction         String?  // Marketing nudge
+  reasoning                 String?  // AI logic description
+  abVariant                 String   // A/B Test Variant (e.g., 'A' or 'B')
+  isConversion              Boolean  @default(false) // Whether user clicked/acted on the recommended nudge
+  createdAt                 DateTime @default(now())
+}
+
+model ABTestStats {
+  id             String @id @default(uuid())
+  classification String // Shopper segment (e.g. "Cart Abandoner")
+  variant        String // 'A' or 'B'
+  recommendation String // Nudge copy
+  impressions    Int    @default(0)
+  conversions    Int    @default(0)
+
+  @@unique([classification, variant])
+}
