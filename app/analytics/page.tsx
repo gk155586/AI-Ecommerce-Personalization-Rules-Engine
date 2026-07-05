@@ -7,13 +7,20 @@ import { logoutAction } from '../actions';
 export const dynamic = 'force-dynamic';
 
 export default async function AnalyticsPage() {
-  // 1. Fetch historical sessions and A/B test statistics from the database
-  const sessions = await prisma.shopperSession.findMany({
-    orderBy: { createdAt: 'desc' },
-    take: 50
-  });
+  let sessions: Awaited<ReturnType<typeof prisma.shopperSession.findMany>> = [];
+  let abStats: Awaited<ReturnType<typeof prisma.aBTestStats.findMany>> = [];
 
-  const abStats = await prisma.aBTestStats.findMany();
+  try {
+    sessions = await prisma.shopperSession.findMany({
+      orderBy: { createdAt: 'desc' },
+      take: 50
+    });
+
+    abStats = await prisma.aBTestStats.findMany();
+  } catch {
+    sessions = [];
+    abStats = [];
+  }
 
   // 2. Aggregate metrics
   const totalSessions = sessions.length;
