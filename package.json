@@ -19,8 +19,8 @@
     "openai": "^6.45.0",
     "pdfkit": "^0.19.1",
     "puppeteer": "^25.3.0",
-    "react": "19.0.0-rc-66855b96-20241106",
-    "react-dom": "19.0.0-rc-66855b96-20241106"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",
