@@ -82,25 +82,24 @@ export async function trackConversionAction(sessionId: string) {
     if (!shopperSession || shopperSession.isConversion) {
       return { success: false, error: 'Session not found or already converted.' };
     }
-
-    // 1. Mark session as converted
-    const updatedSession = await prisma.shopperSession.update({
-      where: { id: sessionId },
-      data: { isConversion: true }
-    });
-
-    // 2. Increment conversions in ABTestStats
-    await prisma.aBTestStats.update({
-      where: {
-        classification_variant: {
-          classification: shopperSession.aiClassification || 'Browser',
-          variant: shopperSession.abVariant
+    // 2. Perform updates in a single transaction batch to minimize round-trip database latency
+    const [updatedSession] = await prisma.$transaction([
+      prisma.shopperSession.update({
+        where: { id: sessionId },
+        data: { isConversion: true }
+      }),
+      prisma.aBTestStats.update({
+        where: {
+          classification_variant: {
+            classification: shopperSession.aiClassification || 'Browser',
+            variant: shopperSession.abVariant
+          }
+        },
+        data: {
+          conversions: { increment: 1 }
         }
-      },
-      data: {
-        conversions: { increment: 1 }
-      }
-    });
+      })
+    ]);
 
     console.log(`Conversion tracked for session ${sessionId} (${shopperSession.aiClassification}, Variant ${shopperSession.abVariant})`);
     return { success: true, data: updatedSession };
