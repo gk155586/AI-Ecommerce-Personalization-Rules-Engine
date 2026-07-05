@@ -1,3 +1,5 @@
+'use client';
+
 import RulesEngineDemo from '@/components/RulesEngineDemo';
 import { Sparkles, Brain, Cpu, ShieldCheck } from 'lucide-react';
 
